@@ -7,4 +7,3 @@
 - Add new expense
 - Expense Summary with Pie Chart
 - Real Time Update of the Amount you've used in %
-- A function to add a new income source
