@@ -1,0 +1,39 @@
+name: Update README
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  make-contribution:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Make changes
+        run: |
+          for i in {1..5}; do
+            echo "Making daily contribution #$i"
+            echo "Commit #$i on $(date)" >> README.md
+            git add README.md
+            git commit -m "Daily contribution #$i"
+          done
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: daily-contribution
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          title: "Daily Contribution"
+          commit-message: "Daily contributions"
+          branch: daily-contribution
+          base: main
+          body: "This pull request was created automatically by a GitHub Actions workflow to make daily contributions."
+          token: ${{ secrets.GITHUB_TOKEN }}
