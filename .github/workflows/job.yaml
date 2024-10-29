@@ -27,11 +27,11 @@ jobs:
       
       - name: Create timestamp file
         run: |
-          echo "- Last updated: $(date '+%Y-%m-%d %H:%M:%S')" > timestamp.txt
+          echo "Last updated: $(date '+%Y-%m-%d %H:%M:%S')" > timestamp.txt
           
       - name: Update README
         run: |
-          echo "Last contribution: $(date '+%Y-%m-%d %H:%M:%S')" >> README.md
+          echo "- Last contribution: $(date '+%Y-%m-%d %H:%M:%S')" >> README.md
           
       - name: Commit changes
         run: |
