@@ -2,7 +2,7 @@ name: Update README
 
 on:
   schedule:
-    - cron: '55 11 * * *'
+    - cron: '5 12 * * *'
     - cron: '25 12 * * *'
     - cron: '55 12 * * *'
     - cron: '25 13 * * *'
