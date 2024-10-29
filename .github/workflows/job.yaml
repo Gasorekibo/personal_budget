@@ -2,39 +2,40 @@ name: Update README
 
 on:
   schedule:
-    - cron: "22 12 * * *"  # 10:12 UTC → 12:12 Kigali
-    - cron: "25 12 * * *"  # 10:25 UTC → 12:25 Kigali
-    - cron: "55 12 * * *"  # 10:55 UTC → 12:55 Kigali
-    - cron: "25 13 * * *"  # 11:25 UTC → 13:25 Kigali
-    - cron: "55 13 * * *"  # 11:55 UTC → 13:55 Kigali
+    - cron: "30 12 * * *"  # Runs at 12:00 PM Kigali time (10:00 UTC)
+  workflow_dispatch:  # Allows manual trigger for testing
 
 jobs:
-  make-contribution:
+  auto-commit:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
-      - name: Make changes
+          ref: main  # Specify the branch you want to commit to
+      
+      - name: Configure Git
         run: |
-          echo "Making daily contribution on $(date)" >> README.md
-          git add README.md
-          git commit -m "Daily contribution on $(date)"
-
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+      
+      - name: Create timestamp file
+        run: |
+          echo "Last updated: $(date '+%Y-%m-%d %H:%M:%S')" > timestamp.txt
+          
+      - name: Update README
+        run: |
+          echo "Last contribution: $(date '+%Y-%m-%d %H:%M:%S')" >> README.md
+          
+      - name: Commit changes
+        run: |
+          git add timestamp.txt README.md
+          git commit -m "Auto commit - $(date '+%Y-%m-%d %H:%M:%S')"
+          
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          branch: master
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Open pull request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          title: "Daily Contribution"
-          commit-message: "Daily contributions"
-          branch: master
-          base: main
-          body: "This pull request was created automatically by a GitHub Actions workflow to make daily contributions."
-          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main  # Specify the branch you want to push to
