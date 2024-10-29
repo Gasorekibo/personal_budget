@@ -2,7 +2,7 @@ name: Update README
 
 on:
   schedule:
-    - cron: "12 21 * * *"  # 10:12 UTC → 12:12 Kigali
+    - cron: "22 12 * * *"  # 10:12 UTC → 12:12 Kigali
     - cron: "25 12 * * *"  # 10:25 UTC → 12:25 Kigali
     - cron: "55 12 * * *"  # 10:55 UTC → 12:55 Kigali
     - cron: "25 13 * * *"  # 11:25 UTC → 13:25 Kigali
