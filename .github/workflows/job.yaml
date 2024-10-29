@@ -2,7 +2,11 @@ name: Update README
 
 on:
   schedule:
-    - cron: "30 12 * * *"  # Runs at 12:00 PM Kigali time (10:00 UTC)
+    - cron: "37 12 * * *"  
+    - cron: "40 12 * * *"  
+    - cron: "55 12 * * *"  
+    - cron: "25 13 * * *"  
+    - cron: "55 13 * * *"  
   workflow_dispatch:  # Allows manual trigger for testing
 
 jobs:
