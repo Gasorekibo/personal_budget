@@ -2,7 +2,11 @@ name: Update README
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '55 11 * * *'
+    - cron: '25 12 * * *'
+    - cron: '55 12 * * *'
+    - cron: '25 13 * * *'
+    - cron: '55 13 * * *'
 
 jobs:
   make-contribution:
@@ -15,17 +19,14 @@ jobs:
 
       - name: Make changes
         run: |
-          for i in {1..5}; do
-            echo "Making daily contribution #$i"
-            echo "Commit #$i on $(date)" >> README.md
-            git add README.md
-            git commit -m "Daily contribution #$i"
-          done
+          echo "Making daily contribution on $(date)" >> README.md
+          git add README.md
+          git commit -m "Daily contribution on $(date)"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          branch: daily-contribution
+          branch: master
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Open pull request
@@ -33,7 +34,7 @@ jobs:
         with:
           title: "Daily Contribution"
           commit-message: "Daily contributions"
-          branch: daily-contribution
+          branch: master
           base: main
           body: "This pull request was created automatically by a GitHub Actions workflow to make daily contributions."
           token: ${{ secrets.GITHUB_TOKEN }}
