@@ -6,4 +6,4 @@
 - Warning/ Alert if expenses are closer to the limit.
 - Add new expense
 - Expense Summary with Pie Chart
-- Real Time Update of the Amount you've used in %
+- Real Time Update of the Amount you've used in %- Last contribution: 2024-11-04 13:04:50
