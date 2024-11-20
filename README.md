@@ -8,3 +8,4 @@
 - Expense Summary with Pie Chart
 - Real Time Update of the Amount you've used in %
 - Last contribution: 2024-11-20 07:08:36
+- Last contribution: 2024-11-20 13:05:46
