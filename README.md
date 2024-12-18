@@ -7,3 +7,4 @@
 - Add new expense
 - Expense Summary with Pie Chart
 - Real Time Update of the Amount you've used in %
+- Last contribution: 2024-12-18 07:08:29
