@@ -1,45 +1,45 @@
-name: Update README
+# name: Update README
 
-on:
-  schedule:
-    - cron: "56 6 * * *"  
-    - cron: "40 12 * * *"  
-    - cron: "55 12 * * *"  
-    - cron: "25 13 * * *"  
-    - cron: "55 13 * * *"  
-  workflow_dispatch:
+# on:
+#   schedule:
+#     - cron: "56 6 * * *"  
+#     - cron: "40 12 * * *"  
+#     - cron: "55 12 * * *"  
+#     - cron: "25 13 * * *"  
+#     - cron: "55 13 * * *"  
+#   workflow_dispatch:
 
-jobs:
-  auto-commit:
-    runs-on: ubuntu-latest
+# jobs:
+#   auto-commit:
+#     runs-on: ubuntu-latest
     
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          ref: main
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
+#         with:
+#           fetch-depth: 0
+#           ref: main
       
-      - name: Configure Git
-        run: |
-          git config --global user.name "Gasorekibo"
-          git config --global user.email "m.gasore@alustudent.com"
+#       - name: Configure Git
+#         run: |
+#           git config --global user.name "Gasorekibo"
+#           git config --global user.email "m.gasore@alustudent.com"
       
-      - name: Create timestamp file
-        run: |
-          echo "Last updated: $(date '+%Y-%m-%d %H:%M:%S')" > timestamp.txt
+#       - name: Create timestamp file
+#         run: |
+#           echo "Last updated: $(date '+%Y-%m-%d %H:%M:%S')" > timestamp.txt
           
-      - name: Update README
-        run: |
-          echo "- Last contribution: $(date '+%Y-%m-%d %H:%M:%S')" >> README.md
+#       - name: Update README
+#         run: |
+#           echo "- Last contribution: $(date '+%Y-%m-%d %H:%M:%S')" >> README.md
           
-      - name: Commit changes
-        run: |
-          git add timestamp.txt README.md
-          git commit -m "Auto commit - $(date '+%Y-%m-%d %H:%M:%S')"
+#       - name: Commit changes
+#         run: |
+#           git add timestamp.txt README.md
+#           git commit -m "Auto commit - $(date '+%Y-%m-%d %H:%M:%S')"
           
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main  # Specify the branch you want to push to
+#       - name: Push changes
+#         uses: ad-m/github-push-action@master
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           branch: main  # Specify the branch you want to push to
